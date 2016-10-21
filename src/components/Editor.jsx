@@ -8,13 +8,17 @@ export default class Editor extends Component {
 
   constructor(props) {
     super(props);
+    this.updateContent = this.updateContent.bind(this);
   }
 
+  updateContent(event) {
+  	this.props.updateData(event.target.value);
+  }
   render() {
     return (
-    	<div>
+    	<div style={{flexBasis: '750px'}}>
     		<h2>Editor Panel</h2>
-      	<textarea className='editor-panel editor-text'></textarea>
+      	<textarea className='editor-panel editor-text' onChange={this.updateContent}></textarea>
     	</div>
     );
   }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import preview from '../style/preview.css';
 
 var marked = require('marked');
 
@@ -10,21 +11,20 @@ marked.setOptions({
   pedantic: true,
   sanitize: true,
   smartLists: true,
-  smartypants: true
+  smartypants: true,
+  code: true,
+  lang: true
 });
 
-export default class Preview extends Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
+export const Preview = (props) => {
+	const content = {
+		__html: marked(props.data)
+	}
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div></div>
-    );
-  }
+	return (
+  	<div style={{flexBasis: '750px'}}
+  		className="preview-panel" 
+  		dangerouslySetInnerHTML={content}>
+  	</div>
+  );
 }
